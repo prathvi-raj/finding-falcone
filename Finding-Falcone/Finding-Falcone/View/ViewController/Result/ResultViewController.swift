@@ -53,7 +53,7 @@ extension ResultViewController {
                 guard let `self` = self else { return }
                 if result.isSuccess {
                     self.messageLabel.text = pString(.successResult)
-                    self.planeNameLabel.text = result.planetName
+                    self.planeNameLabel.text = result.displayName
                 } else {
                     self.messageLabel.text = pString(.failureResult)
                 }

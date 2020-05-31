@@ -16,6 +16,12 @@ struct Result: Codable, Equatable, Hashable {
         return status == "success"
     }
     
+    var displayName: String? {
+        return planetName != nil ? "Planet : \(planetName!)" : nil
+    }
+    
+    
+    
     enum CodingKeys: String, CodingKey {
         case status
         case planetName = "planet_name"
