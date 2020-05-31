@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>notFoundInStoryboard</key>
+	<dict>
+		<key>value</key>
+		<string> couldn&apos;t be found in Storyboard file</string>
+		<key>comment</key>
+		<string>Print Localizable Strings from .plist file</string>
+	</dict>
+	<key>hello</key>
+	<dict>
+		<key>value</key>
+		<string>Hello!</string>
+		<key>comment</key>
+		<string>Print Localizable Strings from .plist file</string>
+	</dict>
+	<key>genericError</key>
+	<dict>
+		<key>value</key>
+		<string>Something went wrong.</string>
+		<key>comment</key>
+		<string>Generic error.</string>
+	</dict>
+	<key>internetConnectionOffline</key>
+	<dict>
+		<key>value</key>
+		<string>The internet connection apears to be offline.</string>
+		<key>comment</key>
+		<string>User Offline.</string>
+	</dict>
+	<key>internetConnectionSlow</key>
+	<dict>
+		<key>value</key>
+		<string>The internet connection appears tobe slow.</string>
+		<key>comment</key>
+		<string>Slow internet connection.</string>
+	</dict>
+	<key>alreadySelected</key>
+	<dict>
+		<key>value</key>
+		<string>Already selected! Reset to select again</string>
+		<key>comment</key>
+		<string>Selection error</string>
+	</dict>
+	<key>selectPlanet</key>
+	<dict>
+		<key>value</key>
+		<string>Select Planet</string>
+		<key>comment</key>
+		<string>Unselected planet title</string>
+	</dict>
+	<key>successResult</key>
+	<dict>
+		<key>value</key>
+		<string>Success! Congradulations on Finding Falcone. King Shan is mightly pleased.</string>
+		<key>comment</key>
+		<string>Successful result</string>
+	</dict>
+	<key>failureResult</key>
+	<dict>
+		<key>value</key>
+		<string>Sorry! You didn&apos;t find falcone. Please try again.</string>
+		<key>comment</key>
+		<string>Failure result</string>
+	</dict>
+</dict>
+</plist>
