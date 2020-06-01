@@ -21,26 +21,30 @@ class DestinationCoordinator: Coordinator<DestinationCoordinatorResult> {
     private let navigationController: UINavigationController
     private let dependencies: Dependencies
     
+    /// Selected Destinations
+    private let destinations: [Destination]
+    
     /// Available Planets
     private let availablePlanets: [Planet]
     
     /// Available Vehicles
     private let availableVehicles: [Vehicle]
     
-    init(planets: [Planet], vehicles: [Vehicle], navigationController: UINavigationController, dependencies: Dependencies) {
+    init(planets: [Planet], vehicles: [Vehicle], destinations: [Destination], navigationController: UINavigationController, dependencies: Dependencies) {
         
         self.navigationController = navigationController
         self.dependencies = dependencies
         
         self.availablePlanets = planets
         self.availableVehicles = vehicles
+        self.destinations = destinations
     }
     
     override func start() -> Observable<DestinationCoordinatorResult> {
         return Observable<DestinationCoordinatorResult>.create { [weak self] (subscriber) -> Disposable in
             if let `self` = self {
                 
-                let viewModel = DestinationViewModel(planets: self.availablePlanets, vehicles: self.availableVehicles, dependencies: self.dependencies)
+                let viewModel = DestinationViewModel(planets: self.availablePlanets, vehicles: self.availableVehicles, destinations: self.destinations, dependencies: self.dependencies)
                 let destinationNavigationController = UIStoryboard.main.get(DestinationNavigationController.self)
                 
                 let viewController = destinationNavigationController.viewControllers.first as! DestinationViewController

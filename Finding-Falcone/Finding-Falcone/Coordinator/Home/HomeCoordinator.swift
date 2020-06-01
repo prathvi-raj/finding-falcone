@@ -32,7 +32,7 @@ class HomeCoordinator: Coordinator<Void> {
         viewModel.selectedIndexPath.subscribe(onNext: { [weak self] (indexPath) in
             guard let `self` = self, let indexPath = indexPath, !viewModel.destinationTableViewCellData[indexPath.row].isDestinationSelected else { return }
             plog(indexPath)
-            self.showDestination(planets: viewModel.availablePlanets, vehicles: viewModel.availableVehicles)
+            self.showDestination(planets: viewModel.availablePlanets, vehicles: viewModel.availableVehicles, destinations: viewModel.destinations)
                 .subscribe(onNext: { (result) in
                     switch result {
                     case .selected(let destination):
@@ -66,8 +66,8 @@ class HomeCoordinator: Coordinator<Void> {
 extension HomeCoordinator {
     
     /// Launch Destination View Controller
-    private func showDestination(planets: [Planet], vehicles: [Vehicle]) -> Observable<DestinationCoordinatorResult> {
-        let coordinator = DestinationCoordinator(planets: planets, vehicles: vehicles, navigationController: navigationController, dependencies: dependencies)
+    private func showDestination(planets: [Planet], vehicles: [Vehicle], destinations: [Destination]) -> Observable<DestinationCoordinatorResult> {
+        let coordinator = DestinationCoordinator(planets: planets, vehicles: vehicles, destinations: destinations, navigationController: navigationController, dependencies: dependencies)
         return coordinate(to: coordinator)
     }
     

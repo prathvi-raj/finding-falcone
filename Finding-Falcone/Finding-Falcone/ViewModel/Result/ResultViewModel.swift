@@ -30,6 +30,18 @@ class ResultViewModel: BaseViewModel {
     }
     private let _resultResponse = ReplaySubject<Result>.create(bufferSize: 1)
     
+    /// Total time taken text
+    var totalTimeTakenText: String {
+        "Time : \(self.totalTimeTake)"
+    }
+    
+    /// Total time taken for all the destinations
+    var totalTimeTake: Int {
+        return destinations.reduce(0, { (accumulation, enumeration) -> Int in
+            return accumulation + enumeration.timeTaken
+        })
+    }
+    
     /// Initalize with dependencies
     init(destinations: [Destination], dependencies: Dependencies) {
         self.dependencies = dependencies

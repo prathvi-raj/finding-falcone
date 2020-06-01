@@ -19,6 +19,9 @@ class DestinationViewModel: BaseViewModel {
     
     let selectedIndexPath: BehaviorRelay<IndexPath?> = BehaviorRelay<IndexPath?>(value: nil)
     
+    /// Destinations
+    let destinations: [Destination]
+    
     /// Available Planets
     var availablePlanets: [Planet] = []
     
@@ -34,6 +37,23 @@ class DestinationViewModel: BaseViewModel {
     let cancelTaps = PublishSubject<Void>()
     let doneTaps = PublishSubject<Void>()
     
+    var timeTakenText: Observable<String?> {
+        Observable.combineLatest(selectedPlanet, selectedVehicle)
+            .map { [weak self] (planet, vehicle) in
+                guard let self = self, let planet = planet, let vehicle = vehicle else { return nil }
+                let time = (planet.distance / vehicle.speed) + self.totalTimeTake
+                return "Time : \(time)"
+            }
+    }
+    
+    /// Total time taken for all the destinations
+    var totalTimeTake: Int {
+        return destinations.reduce(0, { (accumulation, enumeration) -> Int in
+            return accumulation + enumeration.timeTaken
+        })
+    }
+    
+    /// Selected destination
     var destination: Destination? {
         guard let planet = selectedPlanet.value, let vehicle = selectedVehicle.value else {
             return nil
@@ -43,12 +63,11 @@ class DestinationViewModel: BaseViewModel {
     }
     
     /// Initalize with dependencies
-    init(planets: [Planet], vehicles: [Vehicle], dependencies: Dependencies) {
+    init(planets: [Planet], vehicles: [Vehicle], destinations: [Destination], dependencies: Dependencies) {
         self.dependencies = dependencies
         self.availableVehicles = vehicles
         self.availablePlanets = planets
-        plog(planets)
-        plog(vehicles)
+        self.destinations = destinations
         super.init()
     }
     

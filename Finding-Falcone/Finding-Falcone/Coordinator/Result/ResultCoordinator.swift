@@ -43,6 +43,7 @@ class ResultCoordinator: Coordinator<ResultCoordinatorResult> {
                     }
                 }).disposed(by: self.disposeBag)
                 
+                viewController.navigationItem.hidesBackButton = true
                 self.navigationController.pushViewController(viewController, animated: true)
             }
             return Disposables.create()

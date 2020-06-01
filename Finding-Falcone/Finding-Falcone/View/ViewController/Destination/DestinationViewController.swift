@@ -52,6 +52,12 @@ extension DestinationViewController {
             .tap.bind(to: viewModel.doneTaps)
             .disposed(by: disposeBag)
         
+        viewModel.timeTakenText
+            .subscribe(onNext: { [weak self] (text) in
+            guard let `self` = self else { return }
+            self.timeTakenLabel.text = text
+        }).disposed(by: disposeBag)
+        
         viewModel.alert.subscribe(onNext: { [weak self] (message, theme) in
             guard let `self` = self else { return }
             self.alert(message, theme: theme)

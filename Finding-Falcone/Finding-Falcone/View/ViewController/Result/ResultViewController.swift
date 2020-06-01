@@ -15,6 +15,7 @@ class ResultViewController: BaseViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var planeNameLabel: UILabel!
+    @IBOutlet weak var timeTakenLabel: UILabel!
     
     /// ResultViewModel
     var viewModel: ResultViewModel!
@@ -34,7 +35,8 @@ extension ResultViewController {
     }
     
     private func setupUI(with viewModel: ResultViewModel) -> Void {
-        
+        timeTakenLabel.isHidden = true
+        timeTakenLabel.text = viewModel.totalTimeTakenText
     }
     
     private func setupBindings(forViewModel viewModel: ResultViewModel) -> Void {
@@ -54,6 +56,7 @@ extension ResultViewController {
                 if result.isSuccess {
                     self.messageLabel.text = pString(.successResult)
                     self.planeNameLabel.text = result.displayName
+                    self.timeTakenLabel.isHidden = false
                 } else {
                     self.messageLabel.text = pString(.failureResult)
                 }

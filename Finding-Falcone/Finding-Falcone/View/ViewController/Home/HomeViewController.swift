@@ -44,7 +44,7 @@ extension HomeViewController {
     }
     
     private func setupUI(with viewModel: HomeViewModel) -> Void {
-        
+        planetsTableView.tableFooterView = UIView()
     }
     
     private func setupBindings(forViewModel viewModel: HomeViewModel) -> Void {
